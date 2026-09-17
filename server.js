@@ -1,32 +1,19 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-require('dotenv').config();
-require('./config/database');
+const { createApp } = require('./lib/app');
+const { DeviceStore } = require('./lib/store');
 
-const app = express();
+const HOST = process.env.HOST || '127.0.0.1';
+const PORT = Number(process.env.PORT) || 3000;
 
-// Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(express.static('public'));
+if (HOST !== '127.0.0.1' && HOST !== 'localhost') {
+    console.warn('Warning: this prototype has no authentication. Binding beyond localhost is unsafe.');
+}
 
-// Routes
-const deviceRoutes = require('./routes/deviceRoutes');
-const assignmentRoutes = require('./routes/assignmentRoutes');
-const userRoutes = require('./routes/userRoutes');
+const app = createApp(new DeviceStore());
 
-// Route Middleware
-app.use('/devices', deviceRoutes);
-app.use('/assignments', assignmentRoutes);
-app.use('/users', userRoutes);
+if (require.main === module) {
+    app.listen(PORT, HOST, () => {
+        console.log(`IT inventory prototype listening on http://${HOST}:${PORT}`);
+    });
+}
 
-// Home route
-app.get('/', (req, res) => {
-    res.render('dashboard');
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+module.exports = { app };
