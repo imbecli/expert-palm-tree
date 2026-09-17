@@ -1,28 +1,23 @@
 {
-  "name": "coding",
-  "version": "1.0.0",
-  "main": "script.js",
+  "name": "expert-palm-tree",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-only IT device inventory prototype",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node --test"
   },
-  "keywords": [],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "inventory",
+    "prototype"
+  ],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "body-parser": "^1.20.3",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^4.21.1",
-    "mongoose": "^8.8.0"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "identity-obj-proxy": "^3.0.0",
-    "jest": "^29.7.0",
-    "jsdom": "^25.0.1",
-    "ws": "^8.18.0"
+    "express": "^4.21.1"
   }
 }

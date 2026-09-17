@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT device inventory</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>IT device inventory</h1>
+        <p>Local prototype. Data is stored in memory and is lost when the server stops.</p>
+    </header>
+
+    <main>
+        <p id="status-banner" class="banner" hidden></p>
+
+        <section aria-labelledby="stats-heading">
+            <h2 id="stats-heading">Overview</h2>
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <h3>Total devices</h3>
+                    <p id="totalDevices">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Available</h3>
+                    <p id="availableDevices">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Assigned</h3>
+                    <p id="assignedDevices">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="form-heading">
+            <h2 id="form-heading">Add a device</h2>
+            <form id="deviceForm">
+                <input type="hidden" id="deviceId" value="">
+                <div class="form-group">
+                    <label for="deviceType">Device type</label>
+                    <input type="text" id="deviceType" name="deviceType" required maxlength="80" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="serialNumber">Serial number</label>
+                    <input type="text" id="serialNumber" name="serialNumber" required maxlength="80" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="condition">Condition</label>
+                    <select id="condition" name="condition">
+                        <option value="New">New</option>
+                        <option value="Good" selected>Good</option>
+                        <option value="Fair">Fair</option>
+                        <option value="Poor">Poor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="Available" selected>Available</option>
+                        <option value="Assigned">Assigned</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">Notes (optional)</label>
+                    <input type="text" id="notes" name="notes" maxlength="200" autocomplete="off">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" id="submitButton">Add device</button>
+                    <button type="button" id="cancelEdit" hidden>Cancel edit</button>
+                </div>
+            </form>
+        </section>
+
+        <section aria-labelledby="list-heading">
+            <h2 id="list-heading">Devices</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Device type</th>
+                        <th>Serial number</th>
+                        <th>Condition</th>
+                        <th>Status</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="device-table-body">
+                    <tr>
+                        <td colspan="6">No devices yet.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Binds to localhost only. There is no sign-in and no durable database.</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
